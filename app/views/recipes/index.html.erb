@@ -14,17 +14,8 @@
             <tr>
               <td><%= link_to recipe.title, recipe_path(recipe) %></td>
               <td><%= recipe.user.name %></td>
-              <td>
-                <% if current_user.already_favorited?(recipe) %>
-                  <%= link_to recipe_favorites_path(recipe), method: :delete do %>
-                    <i class="fas fa-heart"></i>
-                  <% end %>
-                <% else %>
-                  <%= link_to recipe_favorites_path(recipe), method: :post do %>
-                    <i class="far fa-heart"></i>
-                  <% end %>
-                <% end %>
-                <%= recipe.favorites.count %>
+              <td id="favorite_buttons_<%= recipe.id %>">
+                <%= render 'favorites/favorite', recipe: recipe %>
               </td>
             </tr>
           <% end %>
